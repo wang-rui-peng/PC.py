@@ -1,4 +1,3 @@
-import datetime
 import time
 import math
 
@@ -9,7 +8,7 @@ for i in range(len(ls) - 1):
     for j in range(len(ls) - 1 - i):
         if ls[j] > ls[j + 1]:
             ls[j], ls[j + 1] = ls[j + 1], ls[j]
-print("冒泡结果为", ls)
+print("冒泡结果为：", ls)
 print("--" * 30)
 pass
 
@@ -35,14 +34,14 @@ for i in range(len(ls)):
         ls[preIndex + 1] = ls[preIndex]
         preIndex -= 1
     ls[preIndex + 1] = current
-print("插入结果为", ls)
+print("插入结果为：", ls)
 print("--" * 30)
 pass
 
 # 4 希尔排序
 
 gap = 1
-while (gap < len(ls) / 3):
+while gap < len(ls) / 3:
     gap = gap * 3 + 1
 while gap > 0:
     for i in range(gap, len(ls)):
@@ -53,7 +52,7 @@ while gap > 0:
             j -= gap
         ls[j + gap] = temp
     gap = math.floor(gap / 3)
-print("希尔结果为", ls)
+print("希尔结果为：", ls)
 print("--" * 30)
 pass
 
@@ -73,9 +72,9 @@ def merge(left, right):
     return result
 
 
+# noinspection PyShadowingNames
 def merge_sort_1(ls):
-    import math
-    if (len(ls) < 2):
+    if len(ls) < 2:
         return ls
     #    num = math.floor(len(ls) / 2)
     num = int(len(ls) / 2)
@@ -85,6 +84,7 @@ def merge_sort_1(ls):
 
 
 # 归并排序
+# noinspection PyShadowingNames
 def merge_sort_2(ls):
     length = len(ls)
     # 递归终止退出条件
@@ -113,7 +113,9 @@ def merge_sort_2(ls):
 
 # 1.求已知时间的时间差
 import datetime
-def distence_time():
+
+
+def distences_time():
     start_time = '2022-09-07 19:30:00'
     end_time = '2022-09-07 19:37:00'
     start_time_str = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
@@ -138,7 +140,7 @@ import re
 word = 'the stirng Has many line In THE fIle jb51 net'
 s2 = []
 max_word = 1
-word_list = re.split(r'[\s,\.!]+', word)
+word_list = re.split(r'\s+', word)
 # print(word_list)
 
 for words in word_list:
@@ -179,7 +181,7 @@ def time_times():
     # time.sleep(3)
     # end_time = datetime.datetime.now()
     # distance_time = end_time - start_time
-    # print(a, start_time, end_time, distance_time)
+    # print( a, start_time, end_time, distance_time)
     # return distance_time
 
     # a = time.time()  # 时间戳
@@ -196,7 +198,7 @@ def time_times():
     # c = ((b - a).seconds)
     # d = datetime.datetime.strftime(a, '%Y-%m-%d %H:%M:%S')
     # e = datetime.datetime.strftime(b, '%Y-%m-%d %H:%M:%S')
-
+    # noinspection PyShadowingNames
     a = time.time()
     time.sleep(3)
     b = time.time()
@@ -209,10 +211,11 @@ def time_times():
 # 两个英语单词的列表中有，有几个重复的元素
 def strabc():
     while True:
+        a = str(input())
+        b = str(input())
+        n = 0
+        # noinspection PyBroadException
         try:
-            a = str(input())
-            b = str(input())
-            n = 0
             for i in range(len(a)):
                 if a[i - n:i + 1] in b:
                     n += 1
@@ -242,7 +245,7 @@ if __name__ == '__main__':
         ls[k] = v
     print('ls:', ls)
 
-    distence_time()
+    distences_time()
 
     time_times()
     # print(strabc())
