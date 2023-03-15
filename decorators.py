@@ -25,8 +25,8 @@ def wrapper_out2(func):
     return inner2
 
 
-@wrapper_out1
 @wrapper_out2
+@wrapper_out1
 def test():
     print("--test--")
     return 1 * 2
