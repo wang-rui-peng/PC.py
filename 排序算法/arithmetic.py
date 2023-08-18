@@ -384,27 +384,27 @@ def strabc():
 
 
 if __name__ == '__main__':
-    bubble_sort()  # 1 .冒泡算法
+    # bubble_sort()  # 1 .冒泡算法
     selection_sort()  # 2. 选择排序
-    insertion_sort()  # 3 .插入排序
-    shell_sort()  # 4. 希尔排序
-    print('归并排序一：', merge_sort_1(ls))  # 5-1. 归并排序一
-    new_list = merge_sort_2(ls)
-    for k, v in enumerate(new_list):
-        ls[k] = v
-    print('归并排序二：', ls)  # 5-2. 归并排序二
-    prime_number()  # 6.100以内的质数
-    selection_word()  # 7. 找出一段英文句子的最长的一个单词
-    multiplication_table_for()  # 9-1. 99乘法表for-for语句
-    multiplication_table_while()  # 9-2. 99乘法表while-while语句
-    comprehensions()  # 9-3 99乘法表列表推导式
-    distences_time()  # 10-1.求已知时间的时间差
-    time_times()  # 10-2.求时间差
-    stra()  # 11.列表逆序
-    matrix_transposed()  # 12.Matrix transposed（矩阵转置），嵌套列表推导式（解析式）
-    fibonacci_while_01()  # 13-1.Fibonacci sequence（斐波那契数列）,使用while循环实现对位换值方式
-    fibonacci_while_02()  # 13-2.While循环的实现
-    fibonacci_for()  # 13-3.for循环实现的方法
-    armstrong()  # 14.Armstrong number（阿姆斯特朗数），使用Python3实现数值用户指定范围的阿姆斯特朗数
-    factorial()  # 15.Factorial（阶乘），使用Python3实现用户指定的n个阶乘
-    print('重复元素的个数为：', strabc())  # 16. 两个英语单词的列表中有几个重复的元素
+    # insertion_sort()  # 3 .插入排序
+    # shell_sort()  # 4. 希尔排序
+    # print('归并排序一：', merge_sort_1(ls))  # 5-1. 归并排序一
+    # new_list = merge_sort_2(ls)
+    # for k, v in enumerate(new_list):
+    #     ls[k] = v
+    # print('归并排序二：', ls)  # 5-2. 归并排序二
+    # prime_number()  # 6.100以内的质数
+    # selection_word()  # 7. 找出一段英文句子的最长的一个单词
+    # multiplication_table_for()  # 9-1. 99乘法表for-for语句
+    # multiplication_table_while()  # 9-2. 99乘法表while-while语句
+    # comprehensions()  # 9-3 99乘法表列表推导式
+    # distences_time()  # 10-1.求已知时间的时间差
+    # time_times()  # 10-2.求时间差
+    # stra()  # 11.列表逆序
+    # matrix_transposed()  # 12.Matrix transposed（矩阵转置），嵌套列表推导式（解析式）
+    # fibonacci_while_01()  # 13-1.Fibonacci sequence（斐波那契数列）,使用while循环实现对位换值方式
+    # fibonacci_while_02()  # 13-2.While循环的实现
+    # fibonacci_for()  # 13-3.for循环实现的方法
+    # armstrong()  # 14.Armstrong number（阿姆斯特朗数），使用Python3实现数值用户指定范围的阿姆斯特朗数
+    # factorial()  # 15.Factorial（阶乘），使用Python3实现用户指定的n个阶乘
+    # print('重复元素的个数为：', strabc())  # 16. 两个英语单词的列表中有几个重复的元素
