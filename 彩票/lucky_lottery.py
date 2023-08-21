@@ -32,9 +32,9 @@ def crawl_write_to_csv():
     f = open('双色球.csv', mode='a', newline='', encoding='utf-8')
     csv_writer = csv.writer(f)
     csv_writer.writerow(
-        ['期数', '日期', '红球', '蓝球', '销售额', '奖池金额', '一等奖中奖人数', '一等奖中奖金额', '二等奖中奖人数',
-         '二等奖中奖金额', '三等奖中奖人数', '三等奖中奖金额', '四等奖中奖人数', '四等奖中奖金额', '五等奖中奖人数',
-         '五等奖中奖金额', '六等奖中奖人数', '六等奖中奖金额', '中奖情况'])
+        ['期数', '日期', '红球', '蓝球', '销售额', '奖池金额', '一等奖人数', '一等奖金额', '二等奖人数', '二等奖金额',
+         '三等奖人数', '三等奖金额', '四等奖人数', '四等奖金额', '五等奖人数', '五等奖金额', '六等奖人数', '六等奖金额',
+         '中奖情况'])
 
     for page in range(1, 54):  # 获取每一页记录
         print(f'正在抓取第{page}页>>>>>>')
@@ -74,13 +74,14 @@ def crawl_write_to_csv():
                     six_prize = prizegrad['typenum']
                     six_price = prizegrad['typemoney']
             content = res['content']
-                # print(data, reds, blues, code, sales, poolmoney, one_prize, one_price, two_prize, two_price,
-                #       three_prize, three_price, four_prize, four_price, five_prize, five_price, six_prize, six_price,
-                #       content)
+            # print(data, reds, blues, code, sales, poolmoney, one_prize, one_price, two_prize, two_price,
+            #       three_prize, three_price, four_prize, four_price, five_prize, five_price, six_prize, six_price,
+            #       content)
             # 保存为表格 期数，开奖日期，红球，篮球奖池金额，一等奖中奖人数，一等奖中奖金额，二等奖中奖人数，二等奖中奖金额，三等奖中奖人数，三等奖中奖金额，四等奖中奖人数，四等奖中奖金额，五等奖中奖人数，五等奖中奖金额，六等奖中奖人数，六等奖中奖金额，中奖情况，
             csv_writer.writerow(
                 [code, data, reds, blues, sales, poolmoney, one_prize, one_price, two_prize, two_price,
-                 three_prize, three_price, four_prize, four_price, five_prize, five_price, six_prize, six_price, content])
+                 three_prize, three_price, four_prize, four_price, five_prize, five_price, six_prize, six_price,
+                 content])
 
 
 # 把csv文件转换成excel文件
@@ -88,12 +89,19 @@ def csv_change_excel():
     # 读取 csv 文件
     df = pd.read_csv('双色球.csv', encoding='utf-8')
 
+    if os.path.exists('彩票.xlsx'):
+        print('彩票.xlsx文件已经存在!')
+    else:
+        pf = pd.DataFrame()
+        pf.to_excel('彩票.xlsx', sheet_name='双色球', index=False)
+        print('彩票.xlsx文件已经创建成功!')
     # 将数据写入 excel 文件
-    with pd.ExcelWriter('彩票.xlsx', mode='a', if_sheet_exists='replace') as writer:
-        df.to_excel(writer, sheet_name='双色球')
+    with pd.ExcelWriter('彩票.xlsx', mode='a', if_sheet_exists='replace', engine='openpyxl') as writer:
+        # if writer.book['Sheet1'] in writer.book:
+        #     writer.book.remove(writer.book['Sheet1'])      #删除指定sheet页
+        df.to_excel(writer, sheet_name='双色球', index=False)
         # 调整列宽
-        wb = writer.book
-        ws = wb.active
+        ws = writer.book.active
         for i, col in enumerate(ws.columns):
             max_length = 0
             column = col[0].column_letter  # 获取列字母序号

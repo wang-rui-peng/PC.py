@@ -1,5 +1,5 @@
-import cv2
-import pytesseract, os
+
+import pytesseract
 import numpy as np
 import matplotlib.pyplot as plt
 import os.path
@@ -45,8 +45,8 @@ def repair_the_photos():
     hist = get_histogram(flat, 256)
     cs = np.cumsum(hist)
     nj = (cs - cs.min()) * 255
-    N = cs.max() - cs.min()
-    cs = nj / N
+    n = cs.max() - cs.min()
+    cs = nj / n
     cs = cs.astype('uint8')
     img_new = cs[flat]
     img_new = np.reshape(img_new, img.shape)
@@ -87,7 +87,7 @@ def photos_change_background_color():
     img = cv2.resize(img, None, fx=1, fy=1)  # 图片缩小为原来的一半
     rows, cols, channels = img.shape
     print(rows, cols, channels)
-    # 显示图片内容
+    # 显示内容
     cv2.imshow('img', img)
     '''
     # 转化成二值化图像
@@ -159,7 +159,6 @@ def change_background_color(image_path, new_color):
 
 
 import cv2
-import numpy as np
 
 
 def picture():
@@ -197,8 +196,6 @@ def picture():
 
 
 import os
-import argparse
-
 import numpy as np
 import cv2 as cv
 

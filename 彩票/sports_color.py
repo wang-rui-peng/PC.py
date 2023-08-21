@@ -34,10 +34,9 @@ def crawl_write_to_csv():
     f = open('大乐透.csv', mode='a', newline='', encoding='utf-8')
     csv_writer = csv.writer(f)
     csv_writer.writerow(
-        ['销售期号', '销售时间', '开奖号码', '奖池奖金', '销售额', '一等奖中奖人数', '一等奖中奖金额', '二等奖中奖人数',
-         '二等奖中奖金额', '三等奖中奖人数', '三等奖中奖金额', '四等奖中奖人数', '四等奖中奖金额', '五等奖中奖人数',
-         '五等奖中奖金额', '六等奖中奖人数', '六等奖中奖金额', '七等奖中奖人数', '七等奖中奖金额', '八等奖中奖人数',
-         '八等奖中奖金额', '九等奖中奖人数', '九等奖中奖金额'])
+        ['期号', '时间', '开奖号码', '奖池奖金', '销售额', '一等奖人数', '一等奖金额', '二等奖人数', '二等奖金额',
+         '三等奖人数', '三等奖金额', '四等奖人数', '四等奖金额', '五等奖人数', '五等奖金额', '六等奖人数', '六等奖金额',
+         '七等奖人数', '七等奖金额', '八等奖人数', '八等奖金额', '九等奖人数', '九等奖金额'])
 
     for page in range(1, 82):  # 获取每一页记录
         print(f'正在抓取第{page}页>>>>>>')
@@ -101,13 +100,18 @@ def csv_change_excel():
     # 读取 csv 文件
     df = pd.read_csv('大乐透.csv', encoding='utf-8', error_bad_lines=False)
 
+    if os.path.exists('彩票.xlsx'):
+        print('彩票.xlsx文件已经存在!')
+    else:
+        pf = pd.DataFrame()
+        pf.to_excel('彩票.xlsx', sheet_name='大乐透', index=False)
+        print('彩票.xlsx文件已经创建成功!')
     # 将数据写入 excel 文件
-    with pd.ExcelWriter('彩票.xlsx', mode='a', if_sheet_exists='replace') as writer:
-        df.to_excel(writer, sheet_name='大乐透')
+    with pd.ExcelWriter('彩票.xlsx', mode='a', if_sheet_exists='replace', engine='openpyxl') as writer:
+        df.to_excel(writer, sheet_name='大乐透', index=False)
 
         # 调整列宽
-        wb = writer.book
-        ws = wb.active
+        ws = writer.sheets['大乐透']
         for i, col in enumerate(ws.columns):
             max_length = 0
             column = col[0].column_letter  # 获取列字母序号
@@ -124,7 +128,7 @@ def csv_change_excel():
         # 保存并关闭Excel文件
         writer.save()
         '''
-        workbook = writer.book
+        #workbook = writer.book
         worksheet = writer.sheets['大乐透']
         # 遍历每一列并设置width ==该列的最大长度。填充长度也增加了2。
         for i, col in enumerate(df.columns):
@@ -138,8 +142,8 @@ def csv_change_excel():
         writer.save()
         '''
 
+    print('文件已转换完成,请打开察看！')
 
-print('文件已转换完成,请打开察看！')
 
 if __name__ == '__main__':
     crawl_write_to_csv()
